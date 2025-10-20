@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUO STATE Flyer</title>
+    <style>
+      :root{
+        --bg-soft: #f4fcff;
+        --card: #ffffff;
+        --ink: #032d60;
+        --muted:#53657a;
+        --accent:#0070c9;
+        --accent2:#00b3a4;
+        --shadow: 0 12px 32px rgba(0, 35, 90, .10);
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;        
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        background: #f0f0f0;
+        display: flex;
+        justify-content: center;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      
+      .ds-flyer{
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 50px 50px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        width: 870px;        
+      }
+      
+      .ds-flyer:before{
+        content:"";
+        position:absolute; 
+        top: -20%;
+        left: -20%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(255,255,255,.15), transparent 70%);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        pointer-events:none;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(30px, 30px) scale(1.1); }
+      }
+
+      .ds-flyer:after{
+        content:"";
+        position:absolute; 
+        bottom: -15%;
+        right: -15%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(0,179,164,.2), transparent 70%);
+        border-radius: 50%;
+        animation: float 8s ease-in-out infinite reverse;
+        pointer-events:none;
+      }
+
+      .ds-flyer__inner{
+        max-width: 800px;
+        width: 100%;
+        background: var(--card);
+        border-radius: 28px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 50px 0px 45px;
+        position: relative;
+        border: 3px solid rgba(255,255,255,0.3);
+      }
+
+      .ds-flyer__head {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+      }
+
+      .ds-flyer__head::after {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+        border-radius: 2px;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+      }
+
+      .ds-flyer__title{
+        margin: 20px 0 30px;
+        font-size: 42px;
+        line-height: 1.4;
+        color: var(--ink);
+        font-weight: 900;
+        letter-spacing: -0.5px;
+      }
+
+      .ds-flyer__title .title-main {
+        display: block;
+        background: linear-gradient(135deg, #032d60 0%, #0070c9 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        font-size: 46px;
+        font-weight: 900;
+        letter-spacing: -0.3px;
+        margin-bottom: 12px;
+        position: relative;
+        padding: 8px 0px;
+      }
+
+      .ds-flyer__title .title-main::before {
+        content: '🇰🇷';
+        margin-right: 8px;
+        font-size: 28px;
+        animation: bounce 2s ease-in-out infinite;
+      }
+
+      .ds-flyer__title .title-main::after {
+        content: '🇻🇳';
+        margin-left: 8px;
+        font-size: 28px;
+        animation: bounce 2s ease-in-out infinite 0.5s;
+      }
+
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-3px) scale(1.05); }
+      }
+
+      .ds-flyer__title .amp {
+        display: inline-block;
+        color: #764ba2;
+        font-size: 36px;
+        font-weight: 900;
+        margin: 0 8px;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.12); opacity: 1; }
+      }
+
+      .ds-flyer__title .title-sub {        
+        -webkit-background-clip: text;
+        background-clip: text;        
+        display: inline-block;       
+        position: relative;
+        font-size: 45px;
+        padding: 6px 20px;
+        border-radius: 14px;
+        animation: glow 2s ease-in-out infinite;        
+      }
+
+      .ds-flyer__title .title-sub:after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 10px;
+        right: 10px;
+        height: 5px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #00b3a4);
+        border-radius: 2px;
+        opacity: 0.35;
+        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+      }
+
+      .ds-flyer__title .title-sub:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+        border-radius: 14px;
+        z-index: -1;
+        border: 2px solid rgba(102, 126, 234, 0.15);
+      }
+
+      @keyframes glow {
+        0%, 100% { 
+          filter: drop-shadow(0 0 6px rgba(102, 126, 234, 0.25));
+        }
+        50% { 
+          filter: drop-shadow(0 0 14px rgba(102, 126, 234, 0.5));
+        }
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+        padding: 16px 36px;
+        border-radius: 50px;
+        font-weight: 900;
+        font-size: 30px;
+        letter-spacing: 2px;
+        box-shadow: 0 10px 28px rgba(102, 126, 234, 0.45), 
+                    0 0 0 3px rgba(102, 126, 234, 0.2),
+                    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-decoration: none;
+        position: relative;
+        overflow: hidden;
+        border: 3px solid rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        margin-top: 20px;
+      }
+
+      .badge::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s ease;
+      }
+
+      .badge:hover::after {
+        left: 100%;
+      }
+
+      .badge:hover {
+        transform: translateY(-3px) scale(1.06);
+        box-shadow: 0 14px 36px rgba(102, 126, 234, 0.55), 
+                    0 0 0 5px rgba(102, 126, 234, 0.25),
+                    inset 0 2px 6px rgba(255, 255, 255, 0.4);
+        border-color: rgba(255, 255, 255, 0.6);
+      }
+
+      .badge::before {
+        content: '✦';
+        font-size: 22px;
+        color: #ffffff;
+        animation: sparkle 2s ease-in-out infinite;
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+      }
+
+      @keyframes sparkle {
+        0%, 100% { 
+          opacity: 1; 
+          transform: scale(1) rotate(0deg); 
+        }
+        50% { 
+          opacity: 0.8; 
+          transform: scale(1.25) rotate(180deg); 
+        }
+      }
+
+      .ds-flyer__cta{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+        margin: 40px 0 15px;
+      }
+      
+      .ds-flyer__price{
+        text-align: center;
+      }
+      
+      .ds-flyer__price-sub{
+        display: block;
+        color: var(--ink);
+        font-size: 25px;
+        font-weight: 700;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        margin-top: 20px;
+      }
+
+      .ds-btn{
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 800;
+        padding: 16px 36px;
+        border-radius: 14px;
+        transition: all .3s ease;
+        font-size: 22px;
+      }
+      
+      .ds-btn--primary{
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        color: #fff;
+        box-shadow: 0 8px 20px rgba(0,112,201,.3);
+        border: 2px solid rgba(255,255,255,0.3);
+      }
+      
+      .ds-btn--primary:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0,112,201,.4);
+        filter: brightness(1.08);
+      }
+
+      .ds-flyer__footer{
+        margin-top: 25px;
+        text-align: center;
+        color: var(--ink);
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      
+      .ds-flyer__footer .dot{
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--accent);
+        margin: 0 10px;
+        vertical-align: middle;
+      }
+    </style>
+</head>
+<body>
+  
+  <section class="ds-flyer" aria-label="DUO STATE 웹 광고 전단">
+    <a href="https://duostate.com.vn/" target="_blank">
+      <div class="ds-flyer__inner">
+
+        <div class="ds-flyer__head">
+          <h1 class="ds-flyer__title">
+            <span class="title-main">한국 재무제표 <span class="amp">&</span> 베트남 재무제표</span>
+            <span class="title-sub">한 번에 작성</span>
+          </h1>
+          <a href="https://duostate.com.vn/" target="_blank" class="badge">
+            DUO State
+          </a>      
+        </div>
+
+        <div class="ds-flyer__cta">
+          <div class="ds-flyer__price">        
+            <span class="ds-flyer__price-sub">한국 더존 양식의 베트남 재무제표로 보고받으세요.</span>
+          </div>
+          <a class="ds-btn ds-btn--primary" href="https://duostate.com.vn/">더 보러 가기</a>
+        </div>
+
+        <div class="ds-flyer__footer">
+          <p>한 번의 회계처리로 <span class="dot"></span>베트남과 한국 양국 재무제표 동시 작성</p>
+        </div>
+      </div>
+    </a>
+  </section>
+
+</body>
+</html>
