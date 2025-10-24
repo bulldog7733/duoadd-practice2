@@ -4,373 +4,270 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUO STATE Flyer</title>
-    <style>
-      :root{
-        --bg-soft: #f4fcff;
-        --card: #ffffff;
-        --ink: #032d60;
-        --muted:#53657a;
-        --accent:#0070c9;
-        --accent2:#00b3a4;
-        --shadow: 0 12px 32px rgba(0, 35, 90, .10);
-      }
-      
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;        
-        overflow-x: hidden;
-        margin: 0;
-        padding: 0;
-        background: #f0f0f0;
-        display: flex;
-        justify-content: center;
-      }
-
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-      
-      .ds-flyer{
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 50px 50px;
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        width: 870px;        
-      }
-      
-      .ds-flyer:before{
-        content:"";
-        position:absolute; 
-        top: -20%;
-        left: -20%;
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, rgba(255,255,255,.15), transparent 70%);
-        border-radius: 50%;
-        animation: float 6s ease-in-out infinite;
-        pointer-events:none;
-      }
-
-      @keyframes float {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        50% { transform: translate(30px, 30px) scale(1.1); }
-      }
-
-      .ds-flyer:after{
-        content:"";
-        position:absolute; 
-        bottom: -15%;
-        right: -15%;
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, rgba(0,179,164,.2), transparent 70%);
-        border-radius: 50%;
-        animation: float 8s ease-in-out infinite reverse;
-        pointer-events:none;
-      }
-
-      .ds-flyer__inner{
-        max-width: 800px;
-        width: 100%;
-        background: var(--card);
-        border-radius: 28px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        padding: 50px 0px 45px;
-        position: relative;
-        border: 3px solid rgba(255,255,255,0.3);
-      }
-
-      .ds-flyer__head {
-        text-align: center;
-        margin-bottom: 50px;
-        position: relative;
-      }
-
-      .ds-flyer__head::after {
-        content: '';
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 4px;
-        background: linear-gradient(90deg, #667eea, #764ba2);
-        border-radius: 2px;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
-      }
-
-      .ds-flyer__title{
-        margin: 20px 0 30px;
-        font-size: 42px;
-        line-height: 1.4;
-        color: var(--ink);
-        font-weight: 900;
-        letter-spacing: -0.5px;
-      }
-
-      .ds-flyer__title .title-main {
-        display: block;
-        background: linear-gradient(135deg, #032d60 0%, #0070c9 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        font-size: 46px;
-        font-weight: 900;
-        letter-spacing: -0.3px;
-        margin-bottom: 12px;
-        position: relative;
-        padding: 8px 0px;
-      }
-
-      .ds-flyer__title .title-main::before {
-        content: '🇰🇷';
-        margin-right: 8px;
-        font-size: 28px;
-        animation: bounce 2s ease-in-out infinite;
-      }
-
-      .ds-flyer__title .title-main::after {
-        content: '🇻🇳';
-        margin-left: 8px;
-        font-size: 28px;
-        animation: bounce 2s ease-in-out infinite 0.5s;
-      }
-
-      @keyframes bounce {
-        0%, 100% { transform: translateY(0) scale(1); }
-        50% { transform: translateY(-3px) scale(1.05); }
-      }
-
-      .ds-flyer__title .amp {
-        display: inline-block;
-        color: #764ba2;
-        font-size: 36px;
-        font-weight: 900;
-        margin: 0 8px;
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      @keyframes pulse {
-        0%, 100% { transform: scale(1); opacity: 0.8; }
-        50% { transform: scale(1.12); opacity: 1; }
-      }
-
-      .ds-flyer__title .title-sub {        
-        -webkit-background-clip: text;
-        background-clip: text;        
-        display: inline-block;       
-        position: relative;
-        font-size: 45px;
-        padding: 6px 20px;
-        border-radius: 14px;
-        animation: glow 2s ease-in-out infinite;        
-      }
-
-      .ds-flyer__title .title-sub:after {
-        content: '';
-        position: absolute;
-        bottom: 2px;
-        left: 10px;
-        right: 10px;
-        height: 5px;
-        background: linear-gradient(90deg, #667eea, #764ba2, #00b3a4);
-        border-radius: 2px;
-        opacity: 0.35;
-        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
-      }
-
-      .ds-flyer__title .title-sub:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
-        border-radius: 14px;
-        z-index: -1;
-        border: 2px solid rgba(102, 126, 234, 0.15);
-      }
-
-      @keyframes glow {
-        0%, 100% { 
-          filter: drop-shadow(0 0 6px rgba(102, 126, 234, 0.25));
-        }
-        50% { 
-          filter: drop-shadow(0 0 14px rgba(102, 126, 234, 0.5));
-        }
-      }
-
-      .badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: #ffffff;
-        padding: 16px 36px;
-        border-radius: 50px;
-        font-weight: 900;
-        font-size: 30px;
-        letter-spacing: 2px;
-        box-shadow: 0 10px 28px rgba(102, 126, 234, 0.45), 
-                    0 0 0 3px rgba(102, 126, 234, 0.2),
-                    inset 0 2px 4px rgba(255, 255, 255, 0.3);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        text-decoration: none;
-        position: relative;
-        overflow: hidden;
-        border: 3px solid rgba(255, 255, 255, 0.4);
-        text-transform: uppercase;
-        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        margin-top: 20px;
-      }
-
-      .badge::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: left 0.6s ease;
-      }
-
-      .badge:hover::after {
-        left: 100%;
-      }
-
-      .badge:hover {
-        transform: translateY(-3px) scale(1.06);
-        box-shadow: 0 14px 36px rgba(102, 126, 234, 0.55), 
-                    0 0 0 5px rgba(102, 126, 234, 0.25),
-                    inset 0 2px 6px rgba(255, 255, 255, 0.4);
-        border-color: rgba(255, 255, 255, 0.6);
-      }
-
-      .badge::before {
-        content: '✦';
-        font-size: 22px;
-        color: #ffffff;
-        animation: sparkle 2s ease-in-out infinite;
-        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
-      }
-
-      @keyframes sparkle {
-        0%, 100% { 
-          opacity: 1; 
-          transform: scale(1) rotate(0deg); 
-        }
-        50% { 
-          opacity: 0.8; 
-          transform: scale(1.25) rotate(180deg); 
-        }
-      }
-
-      .ds-flyer__cta{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-        margin: 40px 0 15px;
-      }
-      
-      .ds-flyer__price{
-        text-align: center;
-      }
-      
-      .ds-flyer__price-sub{
-        display: block;
-        color: var(--ink);
-        font-size: 25px;
-        font-weight: 700;
-        line-height: 1.6;
-        margin-bottom: 30px;
-        margin-top: 20px;
-      }
-
-      .ds-btn{
-        display: inline-block;
-        text-decoration: none;
-        font-weight: 800;
-        padding: 16px 36px;
-        border-radius: 14px;
-        transition: all .3s ease;
-        font-size: 22px;
-      }
-      
-      .ds-btn--primary{
-        background: linear-gradient(135deg, var(--accent), var(--accent2));
-        color: #fff;
-        box-shadow: 0 8px 20px rgba(0,112,201,.3);
-        border: 2px solid rgba(255,255,255,0.3);
-      }
-      
-      .ds-btn--primary:hover{
-        transform: translateY(-2px);
-        box-shadow: 0 12px 28px rgba(0,112,201,.4);
-        filter: brightness(1.08);
-      }
-
-      .ds-flyer__footer{
-        margin-top: 25px;
-        text-align: center;
-        color: var(--ink);
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 1.6;
-      }
-      
-      .ds-flyer__footer .dot{
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 999px;
-        background: var(--accent);
-        margin: 0 10px;
-        vertical-align: middle;
-      }
-    </style>
+    
 </head>
 <body>
   
-  <section class="ds-flyer" aria-label="DUO STATE 웹 광고 전단">
-    <a href="https://duostate.com.vn/" target="_blank">
-      <div class="ds-flyer__inner">
+  <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 그라데이션 정의 -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00b3a4;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="documentGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00b3a4;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#0070c9;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <linearGradient id="documentGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#00b3a4;stop-opacity:0.8" />
+    </linearGradient>
 
-        <div class="ds-flyer__head">
-          <h1 class="ds-flyer__title">
-            <span class="title-main">한국 재무제표 <span class="amp">&</span> 베트남 재무제표</span>
-            <span class="title-sub">한 번에 작성</span>
-          </h1>
-          <a href="https://duostate.com.vn/" target="_blank" class="badge">
-            DUO State
-          </a>      
-        </div>
+    <!-- 글로우 효과 -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
 
-        <div class="ds-flyer__cta">
-          <div class="ds-flyer__price">        
-            <span class="ds-flyer__price-sub">한국 더존 양식의 베트남 재무제표로 보고받으세요.</span>
-          </div>
-          <a class="ds-btn ds-btn--primary" href="https://duostate.com.vn/">더 보러 가기</a>
-        </div>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
 
-        <div class="ds-flyer__footer">
-          <p>한 번의 회계처리로 <span class="dot"></span>베트남과 한국 양국 재무제표 동시 작성</p>
-        </div>
-      </div>
-    </a>
-  </section>
+  <!-- 배경 -->
+  <rect width="800" height="600" fill="url(#bgGradient)"/>
+  
+  <!-- 배경 원형 장식들 -->
+  <circle cx="150" cy="100" r="80" fill="#ffffff" opacity="0.05">
+    <animate attributeName="r" values="80;100;80" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="650" cy="500" r="100" fill="#ffffff" opacity="0.05">
+    <animate attributeName="r" values="100;120;100" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="700" cy="150" r="60" fill="#ffffff" opacity="0.08">
+    <animate attributeName="r" values="60;75;60" dur="4.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- 왼쪽 문서 (베트남) -->
+  <g transform="translate(150, 200)">
+    <!-- 문서 그림자 -->
+    <rect x="5" y="5" width="180" height="220" rx="12" fill="#000000" opacity="0.2" filter="url(#softGlow)"/>
+    
+    <!-- 문서 본체 -->
+    <rect x="0" y="0" width="180" height="220" rx="12" fill="url(#documentGradient1)" filter="url(#glow)"/>
+    <rect x="3" y="3" width="174" height="214" rx="10" fill="#ffffff" opacity="0.95"/>
+    
+    <!-- 베트남 국기 모티브 -->
+    <circle cx="90" cy="50" r="30" fill="#DA251D" opacity="0.15"/>
+    <!-- 베트남 국기 (빨간 배경에 노란 별) -->
+    <rect x="65" y="32" width="50" height="36" rx="3" fill="#DA251D"/>
+    <path d="M 90,38 L 93,47 L 102,47 L 95,52 L 97,61 L 90,56 L 83,61 L 85,52 L 78,47 L 87,47 Z" 
+          fill="#FFFF00"/>
+    
+    <!-- 문서 라인들 -->
+    <rect x="20" y="100" width="140" height="8" rx="4" fill="#00b3a4" opacity="0.3"/>
+    <rect x="20" y="120" width="120" height="8" rx="4" fill="#00b3a4" opacity="0.2"/>
+    <rect x="20" y="140" width="130" height="8" rx="4" fill="#00b3a4" opacity="0.2"/>
+    <rect x="20" y="160" width="110" height="8" rx="4" fill="#00b3a4" opacity="0.15"/>
+    <rect x="20" y="180" width="140" height="8" rx="4" fill="#00b3a4" opacity="0.15"/>
+    
+    <!-- 텍스트 -->
+    <text x="90" y="210" text-anchor="middle" font-size="14" font-weight="bold" fill="#00b3a4">베트남 재무제표</text>
+  </g>
+
+  <!-- 오른쪽 문서 (한국) -->
+  <g transform="translate(470, 200)">
+    <!-- 문서 그림자 -->
+    <rect x="5" y="5" width="180" height="220" rx="12" fill="#000000" opacity="0.2" filter="url(#softGlow)"/>
+    
+    <!-- 문서 본체 -->
+    <rect x="0" y="0" width="180" height="220" rx="12" fill="url(#documentGradient2)" filter="url(#glow)"/>
+    <rect x="3" y="3" width="174" height="214" rx="10" fill="#ffffff" opacity="0.95"/>
+    
+    <!-- 한국 국기 모티브 -->
+    <!-- 대한민국 국기 (태극기) -->
+    <rect x="65" y="32" width="50" height="36" rx="3" fill="#ffffff"/>
+    
+    <!-- 태극 문양 (중앙) - S자 곡선 태극 (90도 회전) -->
+    <g transform="translate(90, 50) rotate(-90)">
+      <!-- 전체 원형 배경 -->
+      <circle cx="0" cy="0" r="9" fill="#C60C30"/>
+      <!-- 파란색 S자 하단 부분 -->
+      <path d="M 6.36,6.36 A 9,9 0 0,1 -6.36,-6.36 A 4.5,4.5 0 0,1 0,0 A 4.5,4.5 0 0,0 6.36,6.36 Z" fill="#0047A0"/>
+    </g>
+    
+    <!-- 건(☰) 괘 - 왼쪽 상단 (3개 실선) -->
+    <g transform="translate(72, 39) rotate(-33)">
+      <rect x="-6" y="-5" width="12" height="1.8" fill="#000000"/>
+      <rect x="-6" y="-1.5" width="12" height="1.8" fill="#000000"/>
+      <rect x="-6" y="2" width="12" height="1.8" fill="#000000"/>
+    </g>
+    
+    <!-- 곤(☷) 괘 - 오른쪽 하단 (6개 짧은 선) -->
+    <g transform="translate(108, 61) rotate(-33)">
+      <rect x="-6.5" y="-5" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="1" y="-5" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="-6.5" y="-1.5" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="1" y="-1.5" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="-6.5" y="2" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="1" y="2" width="5.5" height="1.8" fill="#000000"/>
+    </g>
+    
+    <!-- 감(☵) 괘 - 왼쪽 하단 (실선-파선-실선) -->
+    <g transform="translate(72, 61) rotate(33)">
+      <rect x="-6" y="-5" width="12" height="1.8" fill="#000000"/>
+      <rect x="-6" y="-1.5" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="0.5" y="-1.5" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="-6" y="2" width="12" height="1.8" fill="#000000"/>
+    </g>
+    
+    <!-- 리(☲) 괘 - 오른쪽 상단 (파선-실선-파선) -->
+    <g transform="translate(108, 39) rotate(33)">
+      <rect x="-6.5" y="-5" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="1" y="-5" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="-6" y="-1.5" width="12" height="1.8" fill="#000000"/>
+      <rect x="-6.5" y="2" width="5.5" height="1.8" fill="#000000"/>
+      <rect x="1" y="2" width="5.5" height="1.8" fill="#000000"/>
+    </g>
+    
+    <!-- 문서 라인들 -->
+    <rect x="20" y="100" width="140" height="8" rx="4" fill="#667eea" opacity="0.3"/>
+    <rect x="20" y="120" width="120" height="8" rx="4" fill="#667eea" opacity="0.2"/>
+    <rect x="20" y="140" width="130" height="8" rx="4" fill="#667eea" opacity="0.2"/>
+    <rect x="20" y="160" width="110" height="8" rx="4" fill="#667eea" opacity="0.15"/>
+    <rect x="20" y="180" width="140" height="8" rx="4" fill="#667eea" opacity="0.15"/>
+    
+    <!-- 텍스트 -->
+    <text x="90" y="210" text-anchor="middle" font-size="14" font-weight="bold" fill="#667eea">한국 재무제표</text>
+  </g>
+
+  <!-- 중앙 연결 요소 -->
+  <g transform="translate(400, 300)">
+    <!-- 중앙 원 -->
+    <circle cx="0" cy="0" r="50" fill="url(#connectionGradient)" filter="url(#glow)" opacity="0.9">
+      <animate attributeName="r" values="50;55;50" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="0" cy="0" r="45" fill="#ffffff" opacity="0.95"/>
+    
+    <!-- 동기화 아이콘 -->
+    <path d="M -15,-10 L 15,-10 L 15,0 L 20,0 L 10,12 L 0,0 L 5,0 L 5,-10" 
+          fill="#764ba2" opacity="0.8" transform="rotate(0)">
+      <animateTransform attributeName="transform" type="rotate" 
+        from="0 0 0" to="360 0 0" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M -15,10 L 15,10 L 15,0 L 20,0 L 10,-12 L 0,0 L 5,0 L 5,10" 
+          fill="#764ba2" opacity="0.8" transform="rotate(180)">
+      <animateTransform attributeName="transform" type="rotate" 
+        from="180 0 0" to="540 0 0" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- 연결선들 (왼쪽에서 중앙으로) -->
+  <g opacity="0.6">
+    <path d="M 240 230 Q 320 230 350 270" stroke="url(#connectionGradient)" stroke-width="3" fill="none" stroke-linecap="round">
+      <animate attributeName="stroke-dasharray" values="0,300;150,150;300,0" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dashoffset" values="0;-300" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 240 290 Q 320 290 350 290" stroke="url(#connectionGradient)" stroke-width="3" fill="none" stroke-linecap="round">
+      <animate attributeName="stroke-dasharray" values="0,300;150,150;300,0" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dashoffset" values="0;-300" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 240 350 Q 320 350 350 310" stroke="url(#connectionGradient)" stroke-width="3" fill="none" stroke-linecap="round">
+      <animate attributeName="stroke-dasharray" values="0,300;150,150;300,0" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dashoffset" values="0;-300" dur="2.2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- 연결선들 (중앙에서 오른쪽으로) -->
+  <g opacity="0.6">
+    <path d="M 450 270 Q 480 230 560 230" stroke="url(#connectionGradient)" stroke-width="3" fill="none" stroke-linecap="round">
+      <animate attributeName="stroke-dasharray" values="0,300;150,150;300,0" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dashoffset" values="0;-300" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 450 290 Q 480 290 560 290" stroke="url(#connectionGradient)" stroke-width="3" fill="none" stroke-linecap="round">
+      <animate attributeName="stroke-dasharray" values="0,300;150,150;300,0" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dashoffset" values="0;-300" dur="2.5s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 450 310 Q 480 350 560 350" stroke="url(#connectionGradient)" stroke-width="3" fill="none" stroke-linecap="round">
+      <animate attributeName="stroke-dasharray" values="0,300;150,150;300,0" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dashoffset" values="0;-300" dur="2.2s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- 상단 타이틀 -->
+  <g transform="translate(400, 100)">
+    <text x="0" y="0" text-anchor="middle" font-size="48" font-weight="900" fill="#ffffff" filter="url(#glow)">
+      DUO STATE
+    </text>
+    <text x="0" y="35" text-anchor="middle" font-size="16" font-weight="600" fill="#ffffff" opacity="0.9">
+      베트남 회계장이 한국 더존 양식 재무제표를 작성한다면?
+    </text>
+  </g>
+
+  <!-- 반짝이는 별 효과 -->
+  <g opacity="0.7">
+    <circle cx="120" cy="150" r="2" fill="#ffffff">
+      <animate attributeName="opacity" values="0;1;0" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="680" cy="120" r="2" fill="#ffffff">
+      <animate attributeName="opacity" values="0;1;0" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="250" cy="480" r="2" fill="#ffffff">
+      <animate attributeName="opacity" values="0;1;0" dur="2.8s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="620" cy="450" r="2" fill="#ffffff">
+      <animate attributeName="opacity" values="0;1;0" dur="3.2s" begin="1.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- 하단 설명 문구 및 버튼 -->
+  <g transform="translate(400, 475)">
+    <!-- 설명 텍스트 -->
+    <text x="0" y="0" text-anchor="middle" font-size="15" font-weight="500" fill="#ffffff" opacity="0.95">
+      베트남 재무제표가 더존 양식의 한국 재무제표로 자동 변환됩니다.
+    </text>
+    
+    <!-- 문의하기 버튼 -->
+    <g transform="translate(0, 35)" cursor="pointer">
+      <!-- 버튼 그림자 -->
+      <rect x="-85" y="2" width="170" height="48" rx="24" fill="#000000" opacity="0.2" filter="url(#softGlow)"/>
+      
+      <!-- 버튼 본체 -->
+      <rect x="-85" y="0" width="170" height="48" rx="24" fill="#ffffff" opacity="0.95" filter="url(#glow)">
+        <animate attributeName="opacity" values="0.95;1;0.95" dur="2s" repeatCount="indefinite"/>
+      </rect>
+      
+      <!-- 버튼 텍스트 -->
+      <text x="0" y="31" text-anchor="middle" font-size="17" font-weight="700" fill="#764ba2">
+        문의하기
+      </text>
+      
+      <!-- 화살표 아이콘 -->
+      <path d="M 55,-9 L 61,-9 L 61,-12 L 67,-6 L 61,0 L 61,-3 L 55,-3 Z" 
+            fill="#764ba2" opacity="0.8" transform="translate(0, 24)">
+        <animateTransform attributeName="transform" type="translate"
+          values="0,24; 3,24; 0,24" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+    </g>
+  </g>
+</svg>
 
 </body>
 </html>
